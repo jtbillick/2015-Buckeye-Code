@@ -1,17 +1,17 @@
 package org.usfirst.frc.team4780.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
+import org.usfirst.frc.team4780.robot.commands.ExampleCommand;
+import org.usfirst.frc.team4780.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4780.robot.subsystems.Elevator;
+import org.usfirst.frc.team4780.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team4780.robot.subsystems.Intake;
 
+import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
-import org.usfirst.frc.team4780.robot.commands.ExampleCommand;
-import org.usfirst.frc.team4780.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team4780.robot.subsystems.Elevator;
-import org.usfirst.frc.team4780.robot.subsystems.ExampleSubsystem; 
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,8 +25,10 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Joystick joystick;
 	public static Joystick elevateJoystick;
+	public static Joystick intakeJoystick;
 	public static Elevator elevator;
 	public static OI oi;
+	public static Intake intake;
 	
 
     Command autonomousCommand;
@@ -42,6 +44,8 @@ public class Robot extends IterativeRobot {
     	driveTrain = new DriveTrain();
     	joystick = new Joystick(0);
     	elevateJoystick = new Joystick(1);
+    	intake = new Intake();
+    	intakeJoystick = new Joystick(2);
     	
 		
         // instantiate the command used for the autonomous period
@@ -81,8 +85,10 @@ public class Robot extends IterativeRobot {
         	// Drive control
         	driveTrain.drive(joystick);
         	
+        	intake.driveIntake(intakeJoystick);
+        	
         	// Elevator control
-        	elevator.setSpeed(-.25*elevateJoystick.getY());
+        	elevator.setSpeed(-.30*elevateJoystick.getY());
         	
         	Timer.delay(0.01);
         }

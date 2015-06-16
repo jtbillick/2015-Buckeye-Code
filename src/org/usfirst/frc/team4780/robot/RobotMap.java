@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4780.robot;
 
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 
 
 /**
@@ -17,11 +18,14 @@ public class RobotMap {
 	Talon leftVictor = new Talon(0);
 	Talon rightVictor = new Talon(1);
 	Talon elevatorTalon = new Talon(2);
+	Victor rightIntakeVictor = new Victor(3);
+	Victor leftIntakeVictor = new Victor(4);
 	
 	public static final int leftTalonPort = 0;
 	public static final int rightTalonPort = 1;
 	public static final int elevatorTalonPort = 2;
-	
+	public static final int rightVictorPort = 3;
+	public static final int leftVictorPort = 4;
 	
     
     // If you are using multiple modules, make sure to define both the port
